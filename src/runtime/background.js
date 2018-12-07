@@ -1,10 +1,13 @@
-import Sprite from '../base/sprite.js'
+// @author: wyndam
+// @email: only.night@qq.com
+
+import EvnItem from '../runtime/envItem.js'
 
 const BG_IMG_SRC = 'images/bg_day.png'
 const BG_IMG_WIDTH = 288
 const BG_IMG_HEIGHT = 512
 
-export default class Background extends Sprite {
+export default class Background extends EvnItem {
 
   constructor() {
     super(BG_IMG_SRC, 0, 0, BG_IMG_WIDTH, BG_IMG_HEIGHT)
@@ -33,7 +36,7 @@ export default class Background extends Sprite {
   }
 
   update() {
-    this.left -= 2
+    super.update()
 
     if (this.left <= -window.innerWidth) {
       this.left = 0
