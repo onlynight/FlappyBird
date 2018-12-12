@@ -45,7 +45,7 @@ export default class Sprite {
    */
   isCollideWith(target) {
     if (!this.visible || !target.visible) {
-      return
+      return false
     }
 
     let targetX = target.x + target.width / 2
@@ -61,9 +61,9 @@ export default class Sprite {
    * 严格边缘检测，会误判
    * {@param target 目标物体}
    */
-  isClollideEdgeWith(target) {
+  isCollideEdgeWith(target) {
     if (!this.visible || !target.visible) {
-      return
+      return false
     }
 
     return ((target.x >= this.x &&

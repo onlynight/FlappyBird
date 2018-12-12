@@ -8,6 +8,8 @@ const BARRIER_IMG1_SRC = 'images/pipe_up.png'
 const BARRIER_WIDTH = 52
 const BARRIER_HEIGHT = 320
 
+let index = -1
+
 export default class Barrier extends EvnItem {
 
   constructor() {
@@ -21,6 +23,7 @@ export default class Barrier extends EvnItem {
 
     this.left = 0
     this.blank = 100
+    this.index = index++
   }
 
   init(barrierTop, barrierBottom, x, y, blank) {
@@ -29,9 +32,15 @@ export default class Barrier extends EvnItem {
     this.x = x
     this.y = y
     this.blank = blank
+    this.visible = true
+    this.left = 0
   }
 
   drawToCanvas(ctx) {
+    if (!this.visible) {
+      return
+    }
+
     ctx.drawImage(
       this.img,
       this.x + this.left,
@@ -50,11 +59,14 @@ export default class Barrier extends EvnItem {
   }
 
   update() {
+    if (!this.visible) {
+      return
+    }
+
     super.update()
 
     if (this.left <= -(window.innerWidth + this.width)) {
-      // todo recycle this item
-      this.left = 0
+      databus.recycleBarrier(this)
     }
   }
 
