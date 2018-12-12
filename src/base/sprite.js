@@ -61,6 +61,10 @@ export default class Sprite {
    * 严格边缘检测，会误判
    * {@param target 目标物体}
    */
+  // isCollideEdgeWith(target) {
+  //   return isCollideEdgeWith1(target, 0)
+  // }
+
   isCollideEdgeWith(target) {
     if (!this.visible || !target.visible) {
       return false

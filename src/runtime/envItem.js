@@ -14,6 +14,9 @@ export default class EnvItem extends Sprite {
   }
 
   update() {
+    if(!this.visible){
+      return
+    }
     this.left -= this[__.speed]
   }
 

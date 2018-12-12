@@ -1,7 +1,7 @@
 // @author: wyndam
 // @email: only.night@qq.com
 
-import Barrier from './barrier.js'
+import BarrierPair from './barrierPair.js'
 
 export default class BarrierManager {
 
@@ -10,7 +10,7 @@ export default class BarrierManager {
   generateBarriers(frame) {
     if (frame % databus.barrierGenFrame === 0) {
       let barrier = databus.generateBarrier('images/pipe_down.png', 'images/pipe_up.png',
-        window.innerWidth, px2dp(-80), px2dp(100))
+        window.innerWidth, px2dp(-130) + Math.random() * px2dp(100), px2dp(150))
 
       databus.barriers.push(barrier)
     }

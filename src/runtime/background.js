@@ -25,22 +25,22 @@ export default class Background extends EvnItem {
       window.innerHeight
     )
 
-    ctx.drawImage(
-      this.img,
-      this.x + window.innerWidth + this.left,
-      this.y,
-      window.innerWidth,
-      window.innerHeight
-    )
+    // ctx.drawImage(
+    //   this.img,
+    //   this.x + window.innerWidth + this.left,
+    //   this.y,
+    //   window.innerWidth,
+    //   window.innerHeight
+    // )
 
   }
 
   update() {
-    super.update()
+    // super.update()
 
-    if (this.left <= -window.innerWidth) {
-      this.left = 0
-    }
+    // if (this.left <= -window.innerWidth) {
+    //   this.left = 0
+    // }
   }
 
 }

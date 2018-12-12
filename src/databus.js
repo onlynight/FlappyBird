@@ -2,7 +2,7 @@
 // @email: only.night@qq.com
 
 import Pool from './base/pool.js'
-import Barrier from './runtime/barrier.js'
+import BarrierPair from './runtime/barrierPair.js'
 
 window.RATIO = window.innerWidth / 288
 
@@ -69,7 +69,7 @@ export default class DataBus {
       barrier.init(barrierTop, barrierBottom, x, y, blank)
       return barrier
     } else {
-      let temp = new Barrier()
+      let temp = new BarrierPair()
       temp.init(barrierTop, barrierBottom, x, y, blank)
       return temp
     }
