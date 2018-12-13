@@ -6,7 +6,7 @@
  */
 export default class Sprite {
 
-  constructor(imgSrc, x, y, width, height) {
+  constructor(imgSrc, x, y, width, height, hasImg = true) {
     // 当前对象的坐标以及尺寸
     this.x = x
     this.y = y
@@ -14,8 +14,10 @@ export default class Sprite {
     this.height = height
 
     // 当前对象显示的图片
-    this.img = new Image()
-    this.img.src = imgSrc
+    if (hasImg) {
+      this.img = new Image()
+      this.img.src = imgSrc
+    }
 
     // 标识当前对象是否显示
     this.visible = true
@@ -25,7 +27,7 @@ export default class Sprite {
    * 将图片绘制到 canvas 上
    * {@param ctx cancas context 对象}
    */
-  drawToCanvas(ctx) {
+  draw(ctx) {
     if (!this.visible) {
       return
     }
@@ -61,10 +63,6 @@ export default class Sprite {
    * 严格边缘检测，会误判
    * {@param target 目标物体}
    */
-  // isCollideEdgeWith(target) {
-  //   return isCollideEdgeWith1(target, 0)
-  // }
-
   isCollideEdgeWith(target) {
     if (!this.visible || !target.visible) {
       return false

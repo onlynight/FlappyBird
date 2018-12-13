@@ -16,7 +16,7 @@ export default class Land extends EvnItem {
     this.y = window.innerHeight - this.height
   }
 
-  drawToCanvas(ctx) {
+  draw(ctx) {
     if (!this.visible) {
       return
     }

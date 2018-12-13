@@ -2,12 +2,13 @@
 // @email: only.night@qq.com
 
 import Button from '../base/button.js'
+import Group from '../base/group.js'
 import Sprite from '../base/sprite.js'
 
-export default class StartGameWindow extends Sprite {
+export default class StartGameWindow extends Group {
 
   constructor() {
-    super('', 0, 0, 0, 0)
+    super()
     this.startCallback = null
 
     this.startButton = new Button('images/button_play.png',
@@ -16,28 +17,28 @@ export default class StartGameWindow extends Sprite {
 
     let that = this
     this.startButton.setOnClickListener(function(view) {
-      if (that.startCallback != null) {
-        that.startCallback()
-      }
+      if (that.visible) {
+        if (that.startCallback != null) {
+          that.startCallback()
+        }
 
-      that.visible = false
-      databus.running = true
+        that.visible = false
+        databus.running = true
+      }
     })
   }
 
-  drawToCanvas(ctx) {
+  draw(ctx) {
     if (!this.visible) {
       return
     }
 
-    this.startButton.drawToCanvas(ctx)
-    this.logo.drawToCanvas(ctx)
+    this.startButton.draw(ctx)
+    this.logo.draw(ctx)
   }
 
   setOnStartListener(callback) {
     this.startCallback = callback
-    console.log('sadfsdfasdf')
-    console.log(this.startCallback === null)
   }
 
 }

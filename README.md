@@ -1,4 +1,4 @@
 # FlappyBird
 Wechat FlappyBird game demo
 
-![demo](./demo.jpg)
+![demo](./flappy_bird.gif)

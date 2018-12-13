@@ -19,6 +19,7 @@ export default class BarrierPair extends Sprite {
 
     this.left = 0
     this.blank = 100
+    this.scored = false
 
     this.topBarrier = new Barrier()
     this.bottomBarrier = new Barrier()
@@ -30,16 +31,17 @@ export default class BarrierPair extends Sprite {
 
     this.blank = blank
     this.visible = true
+    this.scored = false
     this.left = 0
   }
 
-  drawToCanvas(ctx) {
+  draw(ctx) {
     if (!this.visible) {
       return
     }
 
-    this.topBarrier.drawToCanvas(ctx)
-    this.bottomBarrier.drawToCanvas(ctx)
+    this.topBarrier.draw(ctx)
+    this.bottomBarrier.draw(ctx)
   }
 
   update() {
@@ -53,6 +55,17 @@ export default class BarrierPair extends Sprite {
 
   isCollideEdgeWith(target) {
     return (this.topBarrier.isCollideEdgeWith(target) || this.bottomBarrier.isCollideEdgeWith(target))
+  }
+
+  isPassed(player) {
+    if (this.scored) {
+      return false
+    }
+    let score = (player.x > this.topBarrier.x + this.topBarrier.width)
+    if (score) {
+      this.scored = true
+    }
+    return score
   }
 
 }

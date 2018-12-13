@@ -15,7 +15,7 @@ export default class Background extends EvnItem {
     this.left = 0
   }
 
-  drawToCanvas(ctx) {
+  draw(ctx) {
 
     ctx.drawImage(
       this.img,

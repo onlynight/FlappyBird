@@ -23,6 +23,7 @@ export default class DataBus {
 
     this.frame = 0
     this.running = true
+    this.gameOver = false
     this.barriers = []
     this.pool = new Pool()
 

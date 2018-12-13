@@ -14,18 +14,20 @@ export default class Player extends Sprite {
     super(imgSrc, x, y, px2dp(PLAYER_WIDTH), px2dp(PLAYER_HEIGHT))
     this.x = this.x - this.width / 2
     this.y = this.y - this.height / 2
-    this.orgY = y
+    this.orgY = this.y
     this.act = false
     this.start = 0
     this.actY = 0
     this.acted = false
 
+    let that = this
     canvas.addEventListener('touchstart', ((e) => {
-      // databus.running = true
-      this.act = true
-      this.acted = true
-      this.start = databus.frame
-      this.actY = this.y
+      if (that.visible) {
+        this.act = true
+        this.acted = true
+        this.start = databus.frame
+        this.actY = this.y
+      }
     }).bind(this))
 
     canvas.addEventListener('touchmove', ((e) => {
@@ -65,6 +67,10 @@ export default class Player extends Sprite {
   }
 
   update() {
+    if (!this.visible) {
+      return
+    }
+
     this.y = (this.acted ? 0 : this.orgY) + this.s(databus.frame - this.start)
 
     if (this.y <= 0) {
