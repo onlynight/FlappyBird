@@ -3,6 +3,9 @@
 
 import Group from './group.js'
 
+// 定义对其方式，使用移位操作是为了可以用一个值表示队中对其方式，
+// 例如靠右下角对其我们可以写成： Gravity.RIGHT | Gravity.BOTTOM
+// 居中对齐由于和其他对其方式冲突，所以单独设置一个值不使用移位
 window.Gravity = {
   LEFT: 1,
   RIGHT: 1 << 1,
@@ -25,8 +28,6 @@ export default class FrameLayout extends Group {
 
     this.gravity = Gravity.LEFT | Gravity.TOP
     this.sprite = null
-    this.spriteX = 0
-    this.spriteY = 0
   }
 
   setGravity(gravity) {
@@ -43,8 +44,13 @@ export default class FrameLayout extends Group {
     }
 
     if (this.sprite != null) {
-      this.sprite.layout()
-      
+      // FrameLayout 的布局依赖 this.sprite 的尺寸，所以这里要先对子控件进行布局
+      // 否则可能会出现闪烁的情况
+      if (this.sprite instanceof Group) {
+        this.sprite.layout()
+      }
+
+      // 根据不同的对其方式设置 this.sprite 的坐标来达到布局的效果
       if (this.gravity === Gravity.CENTER) {
         let x = (this.width - this.sprite.width) / 2
         let y = (this.height - this.sprite.height) / 2

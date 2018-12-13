@@ -103,15 +103,12 @@ export default class Main {
     // collide with land
     if (this.land.isCollideEdgeWith(this.player)) {
       this.gameOver()
-      console.log(this.player)
-      console.log('land gameover')
     }
 
     // collide with barriers
     for (let i = 0; i < databus.barriers.length; i++) {
       if (databus.barriers[i].isCollideEdgeWith(this.player)) {
         this.gameOver()
-        console.log('barriers gameover')
         break
       }
     }

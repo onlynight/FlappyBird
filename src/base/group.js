@@ -10,12 +10,9 @@ export default class Group extends Sprite {
       y: 0,
       width: 0,
       height: 0,
-      hasImg: false
     }
     let temp = Object.assign(defaultSetting, settings)
-    super('', temp.x, temp.y, temp.width, temp.height, temp.hasImg)
-
-    this.layouted = false
+    super('', temp.x, temp.y, temp.width, temp.height, false)
   }
 
   layout() {}

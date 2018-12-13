@@ -4,6 +4,8 @@
 import Button from '../base/button.js'
 import Group from '../base/group.js'
 import Sprite from '../base/sprite.js'
+import LinearLayout from '../base/linearLayout.js'
+import FrameLayout from '../base/frameLayout.js'
 
 export default class StartGameWindow extends Group {
 
@@ -11,9 +13,8 @@ export default class StartGameWindow extends Group {
     super()
     this.startCallback = null
 
-    this.startButton = new Button('images/button_play.png',
-      window.innerWidth / 2 - 116 / 2, window.innerHeight / 2, 116, 70)
-    this.logo = new Sprite('images/title.png', window.innerWidth / 2 - 178 / 2, window.innerHeight / 3 - 10, 178, 48)
+    this.startButton = new Button('images/button_play.png', 0, 0, 116, 70)
+    this.logo = new Sprite('images/title.png', 0, 0, 178, 48)
 
     let that = this
     this.startButton.setOnClickListener(function(view) {
@@ -26,6 +27,13 @@ export default class StartGameWindow extends Group {
         databus.running = true
       }
     })
+
+    this.contentLayout = new LinearLayout(0, 0, window.innerWidth, window.innerHeight)
+    this.frame = new FrameLayout(0, 0, window.innerWidth, window.innerHeight)
+    this.frame.setGravity(Gravity.CENTER)
+    this.contentLayout.addSprite(this.logo, Gravity.CENTER)
+    this.contentLayout.addSprite(this.startButton, Gravity.CENTER)
+    this.frame.setSprite(this.contentLayout)
   }
 
   draw(ctx) {
@@ -33,8 +41,9 @@ export default class StartGameWindow extends Group {
       return
     }
 
-    this.startButton.draw(ctx)
-    this.logo.draw(ctx)
+    // this.startButton.draw(ctx)
+    // this.logo.draw(ctx)
+    this.frame.draw(ctx)
   }
 
   setOnStartListener(callback) {
