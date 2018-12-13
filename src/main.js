@@ -127,7 +127,6 @@ export default class Main {
   }
 
   gameOver() {
-    console.log('gameover')
     databus.running = false
     databus.gameOver = true
   }
