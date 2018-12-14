@@ -25,7 +25,9 @@ export default class Player extends Sprite {
       if (that.visible) {
         this.act = true
         this.acted = true
+        // 点击后将当前的帧数设置为初始帧数，用于重新计算时间
         this.start = databus.frame
+        // 记下点击时候的纵坐标为作为位移增量的初始值
         this.actY = this.y
       }
     }).bind(this))
@@ -71,6 +73,7 @@ export default class Player extends Sprite {
       return
     }
 
+    // 当前帧数减去初始帧数就得到了一个相对帧数，即是相对时间
     this.y = (this.acted ? 0 : this.orgY) + this.s(databus.frame - this.start)
 
     if (this.y <= 0) {

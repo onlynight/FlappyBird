@@ -53,10 +53,16 @@ export default class BarrierPair extends Sprite {
     this.bottomBarrier.update()
   }
 
+  /**
+   * 分别对两个障碍物做碰撞检测即可
+   */
   isCollideEdgeWith(target) {
     return (this.topBarrier.isCollideEdgeWith(target) || this.bottomBarrier.isCollideEdgeWith(target))
   }
 
+  /**
+   * 判断玩家是否越过了障碍物
+   */
   isPassed(player) {
     if (this.scored) {
       return false

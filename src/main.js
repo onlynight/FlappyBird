@@ -67,9 +67,11 @@ export default class Main {
     if (databus.running) {
       databus.frame++;
 
+      // 更新
       this.update()
     }
 
+    // 绘制
     this.render()
     window.requestAnimationFrame(
       this.bindLoop,

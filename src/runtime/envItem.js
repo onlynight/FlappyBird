@@ -1,3 +1,6 @@
+// @author: wyndam
+// @email: only.night@qq.com
+
 import Sprite from '../base/sprite.js'
 
 const __ = {

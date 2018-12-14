@@ -21,15 +21,20 @@ export default class DataBus {
       return instance
     }
 
+    // 从开始到现在的帧数
     this.frame = 0
+    // 游戏是否在运行，是否需要更新
     this.running = true
+    // 游戏是否结束
     this.gameOver = false
+    // 障碍物显示队列
     this.barriers = []
+    // 缓存对象池
     this.pool = new Pool()
 
     // 全局难度参数
-    this.speed = 2
-    this.barrierGenFrame = 80
+    this.speed = 2 // 速度
+    this.barrierGenFrame = 80 // 生成障碍物间隔帧数
   }
 
   /**
@@ -63,6 +68,9 @@ export default class DataBus {
     }
   }
 
+  /**
+   * 从对象池中去除障碍物组合对象，没有的话就创建一个
+   */
   generateBarrier(barrierTop, barrierBottom, x, y, blank) {
     let barrier = this.pool.get('barrier')
 
